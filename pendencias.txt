@@ -1,0 +1,4 @@
+Implementar endpoints e regras de negócio para:⁠
+⁠- Exclusão do usuário (somente pode ser excluído caso não tenha atividades relacionadas);
+⁠- Ranking top 5 de usuários com mais tempo de atividades registradas;
+⁠⁠- Busca de todas as atividades de um usuário específico.
