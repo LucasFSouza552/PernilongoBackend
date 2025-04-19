@@ -26,8 +26,8 @@
 
     /* Modules */
     "module": "commonjs",                                /* Specify what module code is generated. */
-    "rootDir": "./src",                                  /* Specify the root folder for TypeScript files. */
-    "outDir": "./dist",                                  /* Specify the output folder for compiled files. */
+    "rootDir": "./",                                     /* Alterado para incluir a raiz do projeto */
+    "outDir": "./dist",                                  /* Continua apontando para a pasta de saída */
     // "moduleResolution": "node10",                     /* Specify how TypeScript looks up a file from a given module specifier. */
     // "baseUrl": "./",                                  /* Specify the base directory to resolve non-relative module names. */
     // "paths": {},                                      /* Specify a set of entries that re-map imports to additional lookup locations. */
@@ -108,6 +108,6 @@
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
-  "include": ["src/**/*"],                               /* Include all files in the src directory. */
-  "exclude": ["node_modules"]                            /* Exclude node_modules. */
+  "include": ["index.ts", "src/**/*"],                   /* Inclui o index.ts na raiz e os arquivos dentro de src */
+  "exclude": ["node_modules"]                            /* Continua excluindo node_modules. */
 }
