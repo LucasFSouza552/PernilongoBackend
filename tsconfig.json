@@ -110,8 +110,4 @@
   },
   "include": ["index.ts", "src/**/*"],                   /* Inclui o index.ts na raiz e os arquivos dentro de src */
   "exclude": ["node_modules"]                            /* Continua excluindo node_modules. */
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 091ae7b8e9274db34c449c74592fd8fe6f9a553b

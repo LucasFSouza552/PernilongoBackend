@@ -1,11 +1,6 @@
 import express from "express";
 import cors from "cors";
-<<<<<<< HEAD
 import router from './src/router/routes'
-=======
-import router from "./src/router/routes";
-
->>>>>>> 091ae7b8e9274db34c449c74592fd8fe6f9a553b
 const app = express();
 
 // Middlewares
