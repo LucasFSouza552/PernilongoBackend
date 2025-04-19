@@ -2,8 +2,10 @@ import { Router } from "express";
 import {
   createUserController,
   getAllUsersController,
-  getUserByIdController
+  getUserByIdController,
+  deleteUserByIdController
 } from "../controllers/userController";
+
 import {
   createActivityController,
   getAllActivitiesController
@@ -15,6 +17,7 @@ const router = Router();
 router.post("/users", createUserController);
 router.get("/users", getAllUsersController);
 router.get("/users/:id", getUserByIdController);
+router.delete("/users/:id", deleteUserByIdController);
 
 // Activities
 router.post("/activities", createActivityController);
