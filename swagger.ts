@@ -1,16 +1,69 @@
-// swagger.ts
-import swaggerAutogen from 'swagger-autogen';
+import swaggerJSDoc from 'swagger-jsdoc';
+import { version } from './package.json';
 
-const doc = {
-  info: {
-    title: 'Pernilongo API',
-    description: 'Acompanhamento de atividades',
+const options: swaggerJSDoc.Options = {
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'Pernilongo API',
+      version,
+      description: 'API para acompanhamento de atividades físicas',
+    },
+    servers: [
+      {
+        url: 'http://localhost:3000',
+        description: 'Servidor de desenvolvimento',
+      },
+    ],
+    components: {
+      schemas: {
+        User: {
+          type: 'object',
+          required: ['name'],
+          properties: {
+            id: {
+              type: 'integer',
+              description: 'ID do usuário',
+            },
+            name: {
+              type: 'string',
+              description: 'Nome do usuário',
+            },
+          },
+        },
+        Activity: {
+          type: 'object',
+          required: ['userId', 'type', 'distance', 'time'],
+          properties: {
+            id: {
+              type: 'integer',
+              description: 'ID da atividade',
+            },
+            userId: {
+              type: 'integer',
+              description: 'ID do usuário',
+            },
+            type: {
+              type: 'string',
+              description: 'Tipo da atividade',
+              enum: ['running', 'cycling', 'swimming', 'walking'],
+            },
+            distance: {
+              type: 'number',
+              description: 'Distância percorrida em km',
+            },
+            time: {
+              type: 'number',
+              description: 'Tempo de atividade em minutos',
+            },
+          },
+        },
+      },
+    },
   },
-  host: 'localhost:3000',
-  schemes: ['http'],
+  apis: ['./src/router/*.ts', './src/controllers/*.ts'],
 };
 
-const outputFile = './swagger_output.json';
-const endpointsFiles = ['./index.ts'];
+const swaggerSpec = swaggerJSDoc(options);
 
-swaggerAutogen()(outputFile, endpointsFiles, doc);
+export default swaggerSpec; 

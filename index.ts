@@ -1,12 +1,11 @@
-import express from "express";
 import cors from "cors";
-import router from './src/router/routes';
+import express from "express";
 import swaggerUi from 'swagger-ui-express';
-import swaggerFile from './swagger_output.json';
+import router from './src/router/routes';
+import swaggerSpec from './swagger';
 const app = express();
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
-
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Middlewares
 app.use(express.json());
