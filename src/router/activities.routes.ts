@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createActivityController, getActivityByIdController, getAllActivitiesController, getTopUsersController } from "../controllers/activityController";
+import { createActivityController, getActivityByUserIdController, getAllActivitiesController, getTopUsersController } from "../controllers/activityController";
 
 const activitiesRouter = Router();
 
@@ -114,7 +114,7 @@ activitiesRouter.get("/top", getTopUsersController);
  *       404:
  *         description: Usuário não encontrado
  */
-activitiesRouter.get("/:userId", getActivityByIdController);
+activitiesRouter.get("/:userId", getActivityByUserIdController);
 
 
 export default activitiesRouter;
