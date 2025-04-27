@@ -3,11 +3,13 @@ import {
     createUserController,
     deleteUserByIdController,
     getAllUsersController,
-    getUserByIdController
+    getUserByIdController,
+    getUserRankingController
 } from "../controllers/userController";
 
 import {
     createActivityController,
+    getActivitiesByUserIdController,
     getAllActivitiesController
 } from "../controllers/activityController";
 
@@ -37,7 +39,7 @@ const router = Router();
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/User'
- *       409:
+ *       400:
  *         description: Nome é obrigatório
  */
 router.post("/users", createUserController);
@@ -103,6 +105,8 @@ router.get("/users/:id", getUserByIdController);
  *         description: Usuário excluído com sucesso
  *       404:
  *         description: Usuário não encontrado
+ *       409:
+ *         description: Não é possível excluir usuário com atividades registradas
  */
 router.delete("/users/:id", deleteUserByIdController);
 
@@ -162,5 +166,56 @@ router.post("/activities", createActivityController);
  *                 $ref: '#/components/schemas/Activity'
  */
 router.get("/activities", getAllActivitiesController);
+
+/**
+ * @swagger
+ * /users/ranking:
+ *   get:
+ *     summary: Retorna os 5 usuários com mais tempo de atividade
+ *     tags: [Users]
+ *     responses:
+ *       200:
+ *         description: Lista dos 5 usuários com mais tempo de atividade
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 allOf:
+ *                   - $ref: '#/components/schemas/User'
+ *                   - type: object
+ *                     properties:
+ *                       totalTime:
+ *                         type: number
+ *                         description: Tempo total de atividade em minutos
+ */
+router.get("/users/ranking", getUserRankingController);
+
+/**
+ * @swagger
+ * /users/{id}/activities:
+ *   get:
+ *     summary: Retorna todas as atividades de um usuário específico
+ *     tags: [Activities, Users]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: ID do usuário
+ *     responses:
+ *       200:
+ *         description: Lista de atividades do usuário
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Activity'
+ *       404:
+ *         description: Usuário não encontrado
+ */
+router.get("/users/:id/activities", getActivitiesByUserIdController);
 
 export default router;

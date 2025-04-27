@@ -46,7 +46,7 @@ const options: swaggerJSDoc.Options = {
             type: {
               type: 'string',
               description: 'Tipo da atividade',
-              enum: ['running', 'cycling', 'swimming', 'walking'],
+              enum: ['RUN', 'BIKE', 'SWIM', 'WALK', 'HIKE'],
             },
             distance: {
               type: 'number',

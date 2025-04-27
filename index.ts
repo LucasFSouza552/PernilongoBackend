@@ -18,5 +18,6 @@ app.use(router);
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Pernilongo server running at http://localhost:${PORT}`);
+  console.log(`Documentação disponível em http://localhost:${PORT}/api-docs`);
   console.log("Server is running...");
 });

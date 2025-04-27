@@ -1,8 +1,10 @@
 import { Request, Response } from "express";
 import {
-  createActivity,
-  getAllActivities
+    createActivity,
+    getActivitiesByUserId,
+    getAllActivities
 } from "../services/activityService";
+import { getUserById } from "../services/userService";
 
 export function createActivityController(req: Request, res: Response): void {
     const { userId, type, distance, time } = req.body;
@@ -23,4 +25,23 @@ export function createActivityController(req: Request, res: Response): void {
 export function getAllActivitiesController(req: Request, res: Response): void {
   const list = getAllActivities();
   res.status(200).json(list);
+}
+
+/**
+ * Controlador para buscar todas as atividades de um usuário específico
+ * @param req Requisição HTTP com ID do usuário nos parâmetros
+ * @param res Resposta HTTP
+ */
+export function getActivitiesByUserIdController(req: Request, res: Response): void {
+  const userId = parseInt(req.params.id);
+  
+  // Verificar se o usuário existe
+  const user = getUserById(userId);
+  if (!user) {
+    res.status(404).json({ error: "User not found" });
+    return;
+  }
+  
+  const activities = getActivitiesByUserId(userId);
+  res.status(200).json(activities);
 }
