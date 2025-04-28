@@ -2,6 +2,11 @@ import { Request, Response } from "express";
 import { getTotalUserActivityTime, userHasActivities } from "../services/activityService";
 import { createUser, deleteUser, getAllUsers, getUserById } from "../services/userService";
 
+/**
+ * Controlador para criar um novo usuário.
+ * @param req Requisição HTTP contendo o nome do usuário no corpo (body).
+ * @param res Resposta HTTP com o usuário criado ou erro de validação.
+ */
 export function createUserController(req: Request, res: Response): void {
   const { name } = req.body;
   if (!name) {
@@ -12,11 +17,21 @@ export function createUserController(req: Request, res: Response): void {
   res.status(201).json(user);
 }
 
+/**
+ * Controlador para obter a lista de todos os usuários.
+ * @param req Requisição HTTP.
+ * @param res Resposta HTTP com a lista de usuários.
+ */
 export function getAllUsersController(req: Request, res: Response): void {
   const list = getAllUsers();
   res.status(200).json(list);
 }
 
+/**
+ * Controlador para obter um usuário pelo ID.
+ * @param req Requisição HTTP contendo o ID do usuário nos parâmetros (params).
+ * @param res Resposta HTTP com os dados do usuário ou erro caso não seja encontrado.
+ */
 export function getUserByIdController(req: Request, res: Response): void {
   const id = parseInt(req.params.id);
   const user = getUserById(id);
@@ -26,6 +41,11 @@ export function getUserByIdController(req: Request, res: Response): void {
   }  res.status(200).json(user);
 }
 
+/**
+ * Controlador para deletar um usuário pelo ID.
+ * @param req Requisição HTTP contendo o ID do usuário nos parâmetros (params).
+ * @param res Resposta HTTP com mensagem de sucesso ou erro caso o usuário não seja encontrado ou tenha atividades associadas.
+ */
 export function deleteUserByIdController(req: Request, res: Response): void {
   const id = parseInt(req.params.id);
   const user = getUserById(id);

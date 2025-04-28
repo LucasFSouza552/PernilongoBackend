@@ -6,6 +6,11 @@ import {
 } from "../services/activityService";
 import { getUserById } from "../services/userService";
 
+/**
+ * Controlador para criar uma nova atividade.
+ * @param req Requisição HTTP contendo os campos `userId`, `type`, `distance` e `time` no corpo (body).
+ * @param res Resposta HTTP com a atividade criada ou erro de validação.
+ */
 export function createActivityController(req: Request, res: Response): void {
     const { userId, type, distance, time } = req.body;
   
@@ -22,6 +27,11 @@ export function createActivityController(req: Request, res: Response): void {
     }
 }
 
+/**
+ * Controlador para obter a lista de todas as atividades.
+ * @param req Requisição HTTP.
+ * @param res Resposta HTTP com a lista de todas as atividades.
+ */
 export function getAllActivitiesController(req: Request, res: Response): void {
   const list = getAllActivities();
   res.status(200).json(list);
