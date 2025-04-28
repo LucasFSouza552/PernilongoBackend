@@ -29,6 +29,10 @@ export function createActivity(userId: number, type: string, distance: number, t
   return newActivity;
 }
 
+/**
+ * Busca todas as atividades
+ * @returns Lista de todas as atividades
+ */
 export function getAllActivities(): Activity[] {
   return activities;
 }

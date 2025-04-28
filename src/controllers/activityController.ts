@@ -1,11 +1,16 @@
 import { Request, Response } from "express";
 import {
-    createActivity,
-    getActivitiesByUserId,
-    getAllActivities
+  createActivity,
+  getActivitiesByUserId,
+  getAllActivities
 } from "../services/activityService";
 import { getUserById } from "../services/userService";
 
+/**
+ * Controlador para criar uma nova atividade
+ * @param req Requisição HTTP com os dados da atividade
+ * @param res Resposta HTTP
+ */
 export function createActivityController(req: Request, res: Response): void {
     const { userId, type, distance, time } = req.body;
   
@@ -22,6 +27,11 @@ export function createActivityController(req: Request, res: Response): void {
     }
 }
 
+/**
+ * Controlador para buscar todas as atividades
+ * @param req Requisição HTTP
+ * @param res Resposta HTTP
+ */
 export function getAllActivitiesController(req: Request, res: Response): void {
   const list = getAllActivities();
   res.status(200).json(list);
